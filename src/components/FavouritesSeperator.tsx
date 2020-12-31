@@ -3,10 +3,15 @@ import styles from './FeedRow.style.js';
 import { Text, View } from 'react-native';
 import { FavouriteIcon } from './icon/FavouriteIcon';
 
-const FavouritesSeperator = () => {
+interface Props {
+    onLayout: (ev: any) => void
+}
+const FavouritesSeperator = (props: Props) => {
+
+
 
     return (
-        <View style={{ flex: 1, marginBottom: 15 }}>
+        <View style={{ backgroundColor: 'white' }} onLayout={props.onLayout}>
             <View style={styles.separator_upcoming}>
                 <View style={styles.separator_line} />
                 <View style={styles.separator_content}>
