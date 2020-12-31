@@ -3,12 +3,25 @@ import { Button, Text, TextInput, TouchableOpacity, View, BackHandler } from 're
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { DrawerActions, NavigationDrawerProp } from 'react-navigation-drawer';
 import { FeatureButton } from '@src/components/FeatureButton';
+import { ScrollView } from 'react-native-gesture-handler';
+import { FavouritesSeperator } from '@src/components/FavouritesSeperator';
 
 /**
  * https://reactnavigation.org/docs/4.x/typescript
  */
 type Props = {
     navigation: NavigationDrawerProp<{ userId: string, routeName: string }>;
+}
+
+const data = [];
+for (let i = 0; i < 20; i++) {
+    if (i === 10) {
+        data.push({ index: i, type: 'seperator' });
+
+    } else {
+        data.push({ index: i });
+
+    }
 }
 
 const MasterScreen = (props: Props) => {
@@ -45,7 +58,16 @@ const MasterScreen = (props: Props) => {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <FeatureButton />
+                <ScrollView style={{ width: '100%' }}>
+                    {data.map((item) => {
+                        if (item.type === 'seperator') {
+                            return <FavouritesSeperator key={item.index} />
+                        } else {
+                            return <Text key={item.index} style={{ height: 100, margin: 10, backgroundColor: 'pink' }}>Placeholder</Text>
+
+                        }
+                    })}
+                </ScrollView>
             </View>
         </SafeAreaView>
 
